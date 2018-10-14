@@ -1,0 +1,43 @@
+scalar DateTime
+
+type Query {
+  articulos: [Articulo!]!
+}
+
+type Mutation {
+  createArticulo(articuloDetalleId: ID!, menuId: ID!, nombre: String!, tiempoPreparacion: DateTime, valor: Float!): Articulo
+}
+
+type Articulo {
+  id: ID!
+  activo: Boolean!
+  articuloDetalles: [Articulo_detalle!]!
+  menu: Menu!
+  nombre: String!
+  tiempoPreparacion: DateTime
+  valor: Float!
+}
+
+type Articulo_detalle {
+  id: ID!
+  activo: Boolean!
+  cantidad: Int!
+  articulo: Articulo
+  producto: Producto
+}
+
+type Menu {
+  id: ID!
+  activo: Boolean!
+  articulos: [Articulo!]
+  nombre: String!
+}
+
+type Producto {
+  id: ID!
+  activo: Boolean!
+  articuloDetalles: [Articulo_detalle!]
+  nombre: String!
+  stock: Int!
+  valor: Float!
+}
